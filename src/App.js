@@ -49,6 +49,20 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          {this.state.persons.map(person => {
+            return <Person
+              name={person.name}
+              age={person.age}> I love swimming! </Person>
+          })}
+        </div> 
+      );
+    };
+
     return (
       <div className="App">
         <h1>Andrzej eat glass. Why?</h1>
@@ -58,21 +72,7 @@ class App extends Component {
           onClick={this.switchNameHandler.bind(this, 'Andrzejek!')}>Switch Name</button>
         <button onClick={() => this.switchNameHandler('Andrzejekejekejek!')}>Switch Name</button>
         <button onClick={this.togglePersonsHandler}> Toggle Persons</button>
-        { this.state.showPersons ===true ?
-          <div>
-          <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}> I love swimming! </Person>
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-            click={this.switchNameHandler}
-            changed={this.nameChangeHandler}/>
-          <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age}/>
-        </div> : null
-        }
+        {persons}
       </div>
     );
   }
